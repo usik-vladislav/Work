@@ -1,0 +1,48 @@
+﻿<Window x:Class="ClientWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="BShow" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Content="Список известных стран"
+                Click="ShowCountries_Click"/>
+        <Button x:Name="BRequest" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Content="Найти страну"
+                IsEnabled="False"
+                Click="RequestCountry_Click"/>
+        <TextBox x:Name="TbInput" Grid.Row="0" Grid.Column="2" Height="35"
+                 Width="380" VerticalAlignment="Center" TextChanged="Text_Changed"
+                 HorizontalAlignment="Center" FontSize="14"/>
+        <DataGrid x:Name="DgTable" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                  AutoGenerateColumns="False" Width="780" IsEnabled="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="200"/>
+                <DataGridTextColumn Binding="{Binding NumericCode}" Header="Код страны" Width="80"/>
+                <DataGridTextColumn Binding="{Binding Capital}" Header="Столица" Width="150"/>
+                <DataGridTextColumn Binding="{Binding Area}" Header="Площадь" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Population}" Header="Население" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Region}" Header="Регион" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
